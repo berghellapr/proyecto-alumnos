@@ -1,0 +1,19 @@
+.custom-title {
+    color: #012b85;
+  }
+  
+.card {
+    border-radius: 0;
+    border: none;
+}
+
+.card1 {
+    width: 50%;
+    padding: 40px 30px 10px 30px;
+}
+
+.card2 {
+    width: 50%;
+    background-image: linear-gradient(to right, #4fc7ff, #012b85);
+}
+
