@@ -36,7 +36,11 @@ const listaAlumno = dataAlumno.map(alumno => {
                   <th >Nombre</th>
                   <th >Apellido</th>
                   <th >DNI</th>
+                  <th >Calle</th>
+                  <th >Número</th>
+                  <th >Código Postal</th>
                   <th >Tutor</th>
+                  <th >Género</th>
                   <th ></th>
                 </tr>
               </thead>
