@@ -30,3 +30,6 @@ services:
 networks:
   api-estudiantes:
     driver: bridge
+volumes:
+  mongo-data:
+    driver: local
