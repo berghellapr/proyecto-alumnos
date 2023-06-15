@@ -7,48 +7,31 @@ services:
       dockerfile: Dockerfile
     image: myapp-server
     container_name: myapp-node-server
-    volumes:
-      - ./server/:/usr/src/app
-      - /usr/src/app/node_modules
+  
     ports:
       - "5000:5000"
     depends_on:
       - mongo
-    env_file: ./server/.env
+    
     environment:
+      - MONGO_URL=mongodb://mongo:27017/PruebaLogin
       - NODE_ENV=development
-    networks:
-      - app-network
+    
   mongo:
     image: mongo
     volumes:
-      - data-volume:/data/db
+      - E:/TrabajoDCampo/db:/data/db
     ports:
       - "27017:27017"
-    networks:
-      - app-network
+  
   cliente:
     build:
       context: ./cliente
       dockerfile: Dockerfile
     image: myapp-cliente
     container_name: myapp-react-cliente
-    volumes:
-      - ./cliente/:/usr/app
-      - /usr/app/node_modules
+   
     depends_on:
       - server
     ports:
       - "3000:3000"
-    networks:
-      - app-network
-
-networks:
-    app-network:
-        driver: bridge
-
-volumes:
-    data-volume:
-    node_modules:
-    web-root:
-      driver: local
