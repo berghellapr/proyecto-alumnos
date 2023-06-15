@@ -4,9 +4,6 @@ const jwt = require('jsonwebtoken');
 const {SECRET} = require('../config');
 const {encrypt, compare}  = require('../helpers/encriptado');
 
-
-// nombre, apellido, dni, email, password, roles
-
 const signUp = async (req, res) => {
 
     const {nombre, apellido, dni, email, password, roles} = req.body;
@@ -19,14 +16,7 @@ const signUp = async (req, res) => {
       email,
       password: contraseñaHash
     })
-       // console.log(roles);
-
-    //guardar el id de rol si es que existen.
-    /*
-    en el ELSE, le asigno por defecto el nombre [USER] si no ingreso el rol.
-    guardo en mi variable ROL el ID del nombre [USER] directo de la DB para asignarle el id al nuevo usario
-    */
-
+      
     if(roles){
       const rolEncontrado = await RoleDB.find({nombre : {$in: roles}})
       newUser.roles = rolEncontrado.map(role => role._id);
@@ -40,8 +30,6 @@ const signUp = async (req, res) => {
  const token = jwt.sign({id: savedUser._id}, SECRET , {
           expiresIn: 86400 //24 horas
  }) 
-
-     //res.json( "---->" + newUser )
 
     res.status(200).json({token});
 }

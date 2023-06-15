@@ -27,15 +27,13 @@ const createRoles = async () => {
 };
 
  const createAdmin = async () => {
-  // check for an existing admin user
+
   const userFound = await User.findOne({ email: ADMIN_EMAIL });
   console.log(userFound);
   if (userFound) return;
 
-  // get roles _id
   const roles = await Role.find({ name: { $in: ["admin", "moderator"] } });
 
-  // create a new admin user
   const newUser = await User.create({
     username: ADMIN_USERNAME,
     email: ADMIN_EMAIL,
@@ -43,8 +41,6 @@ const createRoles = async () => {
     roles: roles.map((role) => role._id),
   });
 
-  //console.log(`new user created: ${newUser.email}`);
 };
-
 
 module.exports = { createAdmin, createRoles}

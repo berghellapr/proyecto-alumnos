@@ -25,7 +25,6 @@ const verificarToken = async (req, res, next) => {
   }
 }
 
-
 const isAdmin = async (req, res, next) => {
 
   const usuario = await UserDB.findById(req.usuarioID);
@@ -40,6 +39,5 @@ const isAdmin = async (req, res, next) => {
 return res.status(403).json({message: "requiere ser ADMIN !"})
 
 }
-
 
 module.exports = {verificarToken, isAdmin}

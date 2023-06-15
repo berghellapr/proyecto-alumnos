@@ -1,35 +1,54 @@
 version: '3.0'
 
 services:
-  react-app:
-    image: react-app
-    stdin_open: true
-    ports:
-      - "3000:3000"
-    networks:
-      - api-estudiantes
-
-  api-server:
-    image: api-server
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    image: myapp-server
+    container_name: myapp-node-server
+    volumes:
+      - ./server/:/usr/src/app
+      - /usr/src/app/node_modules
     ports:
       - "5000:5000"
-    networks:
-      - api-estudiantes
     depends_on:
       - mongo
-
+    env_file: ./server/.env
+    environment:
+      - NODE_ENV=development
+    networks:
+      - app-network
   mongo:
-    image: mongo:latest
+    image: mongo
+    volumes:
+      - data-volume:/data/db
     ports:
       - "27017:27017"
     networks:
-      - api-estudiantes
+      - app-network
+  cliente:
+    build:
+      context: ./cliente
+      dockerfile: Dockerfile
+    image: myapp-cliente
+    container_name: myapp-react-cliente
     volumes:
-      - mongo-data:/data/db
+      - ./cliente/:/usr/app
+      - /usr/app/node_modules
+    depends_on:
+      - server
+    ports:
+      - "3000:3000"
+    networks:
+      - app-network
 
 networks:
-  api-estudiantes:
-    driver: bridge
+    app-network:
+        driver: bridge
+
 volumes:
-  mongo-data:
-    driver: local
+    data-volume:
+    node_modules:
+    web-root:
+      driver: local

@@ -28,8 +28,3 @@ app.listen(PORT, () => {
         console.log ("todo ok");
 });
 
-//nodemon --exec npm start para nodemon por si no quiere funcionar.
-
-
-//REPO DE AYUDA https://github.com/FaztWeb/company-products-api/blob/master/src/controllers/products.controller.js
-// YO AYUDA https://www.youtube.com/watch?v=lV7mxivGX_I&t=1659s

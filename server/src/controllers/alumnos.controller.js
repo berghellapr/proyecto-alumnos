@@ -22,7 +22,6 @@ const crearAlumno = async (req, res) => {
   }
 };
 
-//listarAlumnos() todo ok
  const getAlumno = async (req, res) => {
   const alumnos = await AlumnosDB.find().then(data => {
         res.send(data);
@@ -32,28 +31,12 @@ const crearAlumno = async (req, res) => {
       })
 };
 
-//listarAlumno() *!! se pasa por body, no por params.
  const getAlumnoById = async (req, res) => {
   const { alumnoId } = req.body;
 
   const alumno = await AlumnosDB.find(alumnoId);
   res.status(200).json(alumno);
 };
-
-//actualizarAlumno() * !! se pasa por body, no por params.
-/*const upDateAlumno = async (req, res) => {
-     //const { _id , nombre, apellido, dni, tutor } = req.body;
-        await AlumnosDB.findByIdAndUpdate( {_id : req.body._id }, {
-          nombre : req.body.nombre,
-          apellido : req.body.apellido,
-          dni: req.body.dni,
-          tutor: req.body.tutor
-        }).then ( () => {
-          res.send('Se actualizo Correctamente');
-        }).catch(error => {
-          res.send(error);
-        })
-}*/
 
 const upDateAlumno = async (req, res) => {
   const { _id, direccion, genero, ...otherFields } = req.body;
@@ -73,7 +56,6 @@ const upDateAlumno = async (req, res) => {
   }
 };
 
-//borrarAlumno()
 const deleteAlumno = async (req,res) => {
   await AlumnosDB.findByIdAndDelete({_id : req.body._id})
   .then( () => {

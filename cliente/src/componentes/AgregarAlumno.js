@@ -61,13 +61,13 @@ function AgregarAlumno() {
                 value={nombre}
                 onChange={(e) => {
                   const inputValue = e.target.value;
-                  const regex = /^[A-Za-z]+$/;
+                  const regex = /^[A-Za-z\s]+$/;
                   if ((regex.test(inputValue) || inputValue === '') && inputValue.length <= 14) {
                     setNombre(inputValue);
                   }
                 }}
               ></input>
-              {!nombre.match(/^[A-Za-z]+$/) && <p style={{ color: 'dimgray', fontSize: '12px' }}>El nombre solo debe contener un máximo de 14 caracteres A-Z. *</p>}
+              {!nombre.match(/^[A-Za-z\s]+$/) && <p style={{ color: 'dimgray', fontSize: '12px' }}>El nombre solo debe contener un máximo de 14 caracteres A-Z. *</p>}
             </div>
             <div className='mb-3'>
               <label htmlFor="apellido" className='form-label'>
@@ -77,13 +77,13 @@ function AgregarAlumno() {
                 value={apellido}
                 onChange={(e) => {
                   const inputValue = e.target.value;
-                  const regex = /^[A-Za-z]+$/;
+                  const regex = /^[A-Za-z\s]+$/;
                   if ((regex.test(inputValue) || inputValue === '') && inputValue.length <= 14) {
                     setApellido(inputValue);
                   }
                 }}
               ></input>
-              {!apellido.match(/^[A-Za-z]+$/) && <p style={{ color: 'dimgray', fontSize: '12px' }}>El nombre solo debe contener un máximo de 14 caracteres A-Z. *</p>}
+              {!apellido.match(/^[A-Za-z\s]+$/) && <p style={{ color: 'dimgray', fontSize: '12px' }}>El nombre solo debe contener un máximo de 14 caracteres A-Z. *</p>}
             </div>
             <div className='mb-3'>
               <label htmlFor="dni" className='form-label'>
@@ -114,13 +114,13 @@ function AgregarAlumno() {
                 value={direccion.calle}
                 onChange={(e) => {
                   const inputValue = e.target.value;
-                  const regex = /^[A-Za-z]+$/;
+                  const regex = /^[A-Za-z\s]+$/;
                   if ((regex.test(inputValue) || inputValue === '') && inputValue.length <= 14) {
                     setDireccion((prevDireccion) => ({ ...prevDireccion, calle: inputValue }))
                   }
                 }}
               ></input>
-              {!direccion.calle.match(/^[A-Za-z]+$/) && <p style={{ color: 'dimgray', fontSize: '12px' }}>La calle solo debe contener un máximo de 14 caracteres A-Z. *</p>}
+              {!direccion.calle.match(/^[A-Za-z\s]+$/) && <p style={{ color: 'dimgray', fontSize: '12px' }}>La calle solo debe contener un máximo de 14 caracteres A-Z. *</p>}
             </div>
             <div className='mb-3'>
               <label htmlFor="numero" className='form-label' style={{ fontSize: '14px' }}>
